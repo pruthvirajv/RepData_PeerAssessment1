@@ -56,6 +56,16 @@ hist(dfStepsPerDay$StepsPerDay,
 # Calculate and report the mean and median of the total number of steps taken per day
 
 summary(dfStepsPerDay$StepsPerDay)
+
+#mean is
+
+mean(dfStepsPerDay$StepsPerDay)
+
+#median is
+
+median(dfStepsPerDay$StepsPerDay)
+
+
 ```
 
 ## What is the average daily activity pattern?
@@ -111,6 +121,23 @@ hist(dfFilledStepsPerDay$StepsPerDay,
 
 summary(dfFilledStepsPerDay$StepsPerDay)
 
+#Mean is
+
+mean(dfFilledStepsPerDay$StepsPerDay)
+
+#Median is
+
+median(dfFilledStepsPerDay$StepsPerDay)
+
+#Do these values differ from the estimates from the first part of the assignment?
+
+#Original Mean - New Mean
+
+mean(dfStepsPerDay$StepsPerDay) - mean(dfFilledStepsPerDay$StepsPerDay)
+
+#Original Median - New Median
+
+median(dfStepsPerDay$StepsPerDay) - median(dfFilledStepsPerDay$StepsPerDay)
 
 ```
 
@@ -131,7 +158,11 @@ act.int.weekend <- group_by(dfFilledweekend, interval)
 act.int.weekend <- summarize(act.int.weekend, steps=mean(steps))
 act.int.weekend$weekend <- "Weekend"
 
+#Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
 act.int <- rbind(act.int.weekday, act.int.weekend)
 act.int$weekend <- as.factor(act.int$weekend)
+
+#Make a panel plot containing a time series plot
+
 ggplot(act.int, aes(interval, steps)) + geom_line() + facet_grid(weekend ~ .)
 ```
